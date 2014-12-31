@@ -6,14 +6,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.karthik.grandmaster.game.FindNumber;
 import com.karthik.grandmaster.util.Printer;
 
 @SpringBootApplication
 public class NumberGuessingGameApplication implements CommandLineRunner{
 
 	@Autowired
-	private FindNumber findNumber;
+	private NumberGuesser findNumber;
 	
 	@Autowired
 	private Printer printer;
@@ -30,8 +29,8 @@ public class NumberGuessingGameApplication implements CommandLineRunner{
 	}
 	
 	@Bean
-	public FindNumber getNumberGuess(){
-		FindNumber findNumber =  new FindNumber();
+	public NumberGuesser getNumberGuess(){
+		NumberGuesser findNumber =  new NumberGuesser();
 		
 		return findNumber;
 	}

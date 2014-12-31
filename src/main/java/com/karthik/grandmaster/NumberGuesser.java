@@ -1,25 +1,26 @@
-package com.karthik.grandmaster.game;
+package com.karthik.grandmaster;
 
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.karthik.grandmaster.game.GuessNumberByFusion;
 import com.karthik.grandmaster.util.Constants;
 import com.karthik.grandmaster.util.Printer;
 
 @Component
-public class FindNumber {
+public class NumberGuesser {
 
 	@Autowired
 	private Printer printer;
 
 	@Autowired
-	private BinarySearch binarySearch;
+	private GuessNumberByFusion binarySearch;
 
 	private Scanner scanner;
 
-	public FindNumber(){
+	public NumberGuesser(){
 		scanner = new Scanner(System.in);
 	}
 
@@ -36,17 +37,18 @@ public class FindNumber {
 		printer.printUser();
 		while(scanner.hasNext()){
 			input = scanner.next();
-			switch(input.toLowerCase()){
-			case Constants.READY:
-				this.guessByFusion();
-				printer.printMessage(Constants.RETURN_MSG);
-				break;
-			case Constants.EXIT:
-				this.stop();
-				break;
-			default:
+			if(input!=null && input.trim().length()>0){
+				if(Constants.READY.equalsIgnoreCase(input)){
+					this.guessByFusion();
+					
+					printer.printMessage(Constants.RETURN_MSG);
+				}else if(Constants.EXIT.equalsIgnoreCase(input)){
+					this.stop();
+				}else{
+					printer.printMessage(Constants.INITIAL_INPUT);
+				}
+			}else{
 				printer.printMessage(Constants.INITIAL_INPUT);
-				break;
 			}
 			printer.printUser();
 		}
@@ -56,35 +58,31 @@ public class FindNumber {
 
 	public void guessByFusion(){
 		String input;
-
+		binarySearch.flush();
 		int guess = binarySearch.getMaxValue();
-		int previousGuess = guess;
+
 		printer.printMessage("Is your number "+guess+"?");
 		printer.printUser();
 
 		while(scanner.hasNext()){
 			input = scanner.next();
-			switch(input.toLowerCase()){
-			case Constants.YES:
-				printer.printMessage(Constants.YES);
-				return;
-			case Constants.HIGHER:
-				guess = binarySearch.higher(guess);
-				break;
-			case Constants.LOWER:
-				guess = binarySearch.lower(guess);
-				break;
-			case Constants.EXIT:
-				this.stop();
-			default:
+			if(input!=null && input.trim().length()>0){
+				if(Constants.YES.equalsIgnoreCase(input)){
+					printer.printMessage(Constants.YES);
+					return;
+				}else if(Constants.HIGHER.equalsIgnoreCase(input)){
+					guess = binarySearch.higher(guess);
+				}else if(Constants.LOWER.equalsIgnoreCase(input)){
+					guess = binarySearch.lower(guess);
+				}else{
+					printer.printMessage(Constants.GUESS_RULE);
+				}
+			}else{
 				printer.printMessage(Constants.GUESS_RULE);
-				break;
 			}
 			
-			if(previousGuess!=guess){
 				printer.printMessage("Is your number "+guess+"?");
-				previousGuess = guess;
-			}
+			
 			printer.printUser();
 
 		}
