@@ -74,6 +74,8 @@ public class NumberGuesser {
 					guess = binarySearch.higher(guess);
 				}else if(Constants.LOWER.equalsIgnoreCase(input)){
 					guess = binarySearch.lower(guess);
+				}else if(Constants.EXIT.equalsIgnoreCase(input)){
+					this.stop();
 				}else{
 					printer.printMessage(Constants.GUESS_RULE);
 				}

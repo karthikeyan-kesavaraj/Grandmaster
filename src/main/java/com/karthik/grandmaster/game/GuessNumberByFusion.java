@@ -79,8 +79,7 @@ public class GuessNumberByFusion{
 
 	private int computePossibleValue(){
 		varient = computeVarient(this.lowerbound,this.higherbound);
-		System.out.println("varient "+varient);
-		System.out.println("lastvarient "+lastVarient);
+
 		if(lastVarient>varient){
 			
 			lastVarient=varient;
