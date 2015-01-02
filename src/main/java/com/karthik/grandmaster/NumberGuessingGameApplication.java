@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Bean;
 
 import com.karthik.grandmaster.util.Printer;
 
+/**
+* Bootstrap class for the Number Guessing Game.
+* Implements CommandLineRunner of SpringBoot to fasilitae Commandline Application.
+*/
 @SpringBootApplication
 public class NumberGuessingGameApplication implements CommandLineRunner{
 
@@ -22,12 +26,18 @@ public class NumberGuessingGameApplication implements CommandLineRunner{
 		
 	}
 	
+	/**
+	* Method to start the game.
+	*/
 	@Override
 	public void run(String... args) {
 		printer.printBanner();
 		findNumber.start();
 	}
 	
+	/**
+	* Optional Method to initialize Number Guesser Class
+	*/
 	@Bean
 	public NumberGuesser getNumberGuess(){
 		NumberGuesser findNumber =  new NumberGuesser();
@@ -35,6 +45,9 @@ public class NumberGuessingGameApplication implements CommandLineRunner{
 		return findNumber;
 	}
 	
+	/**
+	* Optional method to initialize Custom Generic Commandline printer.
+	*/
 	@Bean Printer getPrinter(){
 		return new Printer();
 	}

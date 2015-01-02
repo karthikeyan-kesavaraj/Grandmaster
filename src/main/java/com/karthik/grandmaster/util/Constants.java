@@ -1,5 +1,8 @@
 package com.karthik.grandmaster.util;
 
+/**
+* This interface contains the constant String values of strings used in the game.
+*/
 public interface Constants {
 	public static final String INITIAL_INPUT = "You should type, ready to start the game or exit to quit.";
 	
