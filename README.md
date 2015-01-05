@@ -1,4 +1,4 @@
 Grandmaster
 ===========
 
-A number guessing game
+A number guessing game example.
