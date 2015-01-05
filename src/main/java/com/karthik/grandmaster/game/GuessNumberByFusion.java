@@ -43,7 +43,7 @@ public class GuessNumberByFusion{
 	/**
 	* lowerbould value at any given point
 	*/
-	private int lowerbound=0;
+	private int lowerbound=1;
 
 	/**
 	* lowerbould value at any given point
@@ -189,7 +189,7 @@ public class GuessNumberByFusion{
 	*/
 	public void flush(){
 		this.higherbound=this.maxValue;
-		this.lowerbound=0;
+		this.lowerbound=1;
 		this.ha=0;
 		this.la=0;
 		this.variant=0;
